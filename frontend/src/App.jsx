@@ -11,6 +11,10 @@ import ViewOneBlog from './pages/ViewOneBlog'
 import Dashboard from './pages/Dashboard'
 import AddProject from './components/AddProject'
 import AddBlog from './components/AddBlog'
+import EditProject from './components/EditProject'
+import UpdateProject from './components/UpdateProject'
+import EditBlog from './components/EditBlog'
+import UpdateBlog from './components/UpdateBlog'
 
 
 const App = () => {
@@ -32,6 +36,10 @@ const App = () => {
           <Route path='/dashboard' element={<Dashboard/>}/>
           <Route path='/dashboard/AddProject' element={<AddProject/>}/>
           <Route path='/dashboard/AddBlog' element={<AddBlog/>}/>
+          <Route path='/dashboard/deleteProject' element={<EditProject/>}/>
+          <Route path='/dashboard/updateProject/:id' element={<UpdateProject/>}/>
+          <Route path='/dashboard/deleteBlog' element={<EditBlog/>}/>
+          <Route path='/dashboard/updateBlog/:id' element={<UpdateBlog/>}/>
         </Routes>
       </div>
 
