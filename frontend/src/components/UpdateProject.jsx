@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 const UpdateProject = () => {
     const [image, setImage] = useState("");
@@ -16,15 +17,15 @@ const UpdateProject = () => {
     const handleReadOneData = () => {
         axios.get(`http://localhost:4444/readOne/Project/${params.id}`).then((res) => {
             setImage(res.data[0].image),
-            setTitle(res.data[0].title),
-            setDescription(res.data[0].description),
-            setmaindescription(res.data[0].maindescription)
+                setTitle(res.data[0].title),
+                setDescription(res.data[0].description),
+                setmaindescription(res.data[0].maindescription)
         })
     }
 
     useEffect(() => {
         handleReadOneData()
-    },[])
+    }, [])
 
     const handleUpdateData = () => {
         const formData = new FormData();
@@ -36,8 +37,11 @@ const UpdateProject = () => {
 
 
         axios.put(`http://localhost:4444/update/Project/${params.id}`, formData).then(() => {
-            alert("You Updated ");
-            navigate("/dashboard/deleteProject")
+            toast("You Updated", {
+                position: "top-center",
+                autoClose: 2000,
+                onClose: (() => navigate("/dashboard/deleteProject"))
+            })
             handleReadOneData()
         })
     }
@@ -67,6 +71,7 @@ const UpdateProject = () => {
                     onClick={handleUpdateData}
                     type='submit' className='bg-white w-80 py-2 rounded-lg text-gray-900  text-3xl'>Update Project</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }

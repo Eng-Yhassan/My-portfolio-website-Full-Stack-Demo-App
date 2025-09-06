@@ -69,4 +69,16 @@ const deleteProject = async (req, res) => {
     }
 }
 
-module.exports = {CreateProject,readProject,readOneProject,UpdateProject,deleteProject}
+// Search data
+const SearchProject = async (req,res) => {
+    const SearchData = await ProjectModel.find({
+        $or: [
+            {title: {$regex :req.params.key}}
+        ]
+    })
+    if(SearchData){
+        res.send(SearchData)
+    }
+}
+
+module.exports = {CreateProject,readProject,readOneProject,UpdateProject,deleteProject,SearchProject}

@@ -9,5 +9,6 @@ router.get("/read/Project", ProjectContaroller.readProject);
 router.get("/readOne/Project/:id", ProjectContaroller.readOneProject);
 router.put("/update/Project/:id", updloadImage.single("img"), ProjectContaroller.UpdateProject);
 router.delete("/delete/Project/:id", ProjectContaroller.deleteProject);
+router.get("/search/Project/:key", ProjectContaroller.SearchProject)
 
 module.exports = router

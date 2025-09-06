@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 const AddBlog = () => {
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
@@ -22,8 +22,12 @@ const AddBlog = () => {
 
 
         axios.post("http://localhost:4444/create/blog", formData).then(() => {
-            alert("You Added new Blog ");
-            navigate("/blog")
+            toast("You Added New Blog", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                onClose: (() => navigate("/blog"))
+            })
         })
     }
 
@@ -52,6 +56,7 @@ const AddBlog = () => {
                     onClick={handleCreateData}
                     type='submit' className='bg-white w-80 py-2 rounded-lg text-gray-900  text-3xl'>Add Project</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }

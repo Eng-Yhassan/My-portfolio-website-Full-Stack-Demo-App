@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
+import { ToastContainer, toast } from 'react-toastify';
 const AddProject = () => {
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
@@ -22,8 +22,12 @@ const AddProject = () => {
 
 
         axios.post("http://localhost:4444/create/Project", formData).then(() => {
-            alert("You Added new Project ");
-            navigate("/projects")
+            toast("You Added new Project", {
+                position: "top-center",
+                autoClose: 2000,
+                hideProgressBar: false,
+                onClose: (() => navigate("/projects"))
+            })
         })
     }
 
@@ -52,6 +56,7 @@ const AddProject = () => {
                     onClick={handleCreateData}
                     type='submit' className='bg-white w-80 py-2 rounded-lg text-gray-900  text-3xl'>Add Project</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }

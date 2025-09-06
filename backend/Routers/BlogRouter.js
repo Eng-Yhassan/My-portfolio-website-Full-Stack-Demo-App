@@ -9,5 +9,6 @@ router.get("/read/blog", BlogController.readProject);
 router.get("/readOne/blog/:id", BlogController.readOneProject);
 router.put("/update/blog/:id", updloadImage.single("img"), BlogController.UpdateProject);
 router.delete("/delete/blog/:id", BlogController.deleteProject);
+router.get("/search/blog/:key", BlogController.searchProject)
 
 module.exports = router
